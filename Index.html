@@ -2,104 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>IX_Cr3@mP!e</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IX_Cr3@mP!e - Public</title>
 
 <style>
-/* ---- YOUR CSS (cleaned, not redesigned) ---- */
-body{margin:0;background:#fff;font-family:Arial;text-align:center;overflow-x:hidden}
-.parent-element::before{
-content:"";position:fixed;inset:0;
-background:url("https://1pagequicksites.github.io/background1/compressed_1763448547149 (1).webp")
-center/cover no-repeat;opacity:.08;z-index:-1}
-.background{
-background:rgba(229,223,0,.45);padding:15px;margin:10px auto;
-border-radius:20px;border:3px solid #000;min-height:350px}
-.photo{width:95%;height:200px;margin:5px auto;display:block;border:3px solid #000;border-radius:12px;background:#fff}
-.btn{display:block;margin:8px auto;padding:14px;background:#000;color:#fff;
-text-decoration:none;border-radius:8px;font-size:18px;border:3px solid #000}
-.name-title{color:hsl(195,100%,60%);font-size:35px;-webkit-text-stroke:1px black}
-#bookmarkBtn{font-size:32px;cursor:pointer;color:#bbb}
-#bookmarkBtn.active{color:gold}
+/* Body + Background */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+}
+.parent-element::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("https://1pagequicksites.github.io/background1/compressed_1763448547149 (1).webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    z-index: -1;
+}
 
-/* ALERT */
-#alert-backdrop{position:fixed;inset:0;background:rgba(255,255,255,.25);display:none}
-#alert-modal{position:fixed;inset:0;background:rgba(255,255,255,.75);
-backdrop-filter:blur(30px);display:none;align-items:center;justify-content:center}
-#alert-box{background:#fff;padding:20px;width:320px;border-radius:8px}
-#alert-box input{width:100%;margin-bottom:8px;padding:6px}
+/* Corner Admin Button */
+.admin-signin {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 8px 12px;
+    background: #00E5FF;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 3px solid #000;
+    animation: pulse 1s infinite alternate;
+}
+@keyframes pulse {
+    from { opacity: 0.75; }
+    to { opacity: 1; }
+}
+
+/* Main Box */
+.background {
+    background: rgba(229, 223, 0, 0.45);
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 20px;
+    border: 3px solid #000;
+    min-height: 350px;
+    max-width: 800px;
+}
+
+/* Photo */
+.photo {
+    width: 95%;
+    height: 200px;
+    margin: 5px auto;
+    display: block;
+    border: 3px solid #000;
+    border-radius: 12px;
+    background: #fff;
+}
+
+/* Name + Star */
+.name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+.name-title { 
+    color: hsl(195, 100%, 60%);
+    font-size: 35px;
+    -webkit-text-stroke: 1px black;
+}
+#bookmarkBtn {
+    font-size: 32px;
+    cursor: pointer;
+    color: #bbb;
+}
+#bookmarkBtn.active {
+    color: gold;
+}
+
+/* Buttons */
+.btn {
+    display: block;
+    width: 90%;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 14px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    border: 3px solid #000;
+}
+.btn.live {
+    background: #00E5FF;
+    color: #000;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Schedule Links */
+#schedule a {
+    display: block;
+    margin: 8px auto;
+}
+
+/* ALERT MODAL */
+#alert-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,.25);
+    display: none;
+}
+#alert-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(30px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#alert-box {
+    background: #fff;
+    padding: 20px;
+    width: 320px;
+    border-radius: 8px;
+}
+#alert-box input {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 6px;
+}
 </style>
 </head>
 
 <body class="parent-element">
 
+<!-- Top-right Admin Sign-In -->
+<a href="signin.html" class="admin-signin">🔑 Admin Sign-In</a>
+
 <div class="background">
-  <img id="photo" class="photo">
-  <div class="name-row">
-    <div id="bookmarkBtn">★</div>
-    <h3 id="name" class="name-title"></h3>
-  </div>
+    <img id="photo" class="photo" src="">
 
-  <a id="topBtn" class="btn"></a>
+    <div class="name-row">
+        <div id="bookmarkBtn">★</div>
+        <h3 id="name" class="name-title"></h3>
+    </div>
 
-  <div id="schedule"></div>
+    <!-- Top Button -->
+    <a id="topBtn" class="btn"></a>
 
-  <a id="bottomBtn" class="btn live"></a>
+    <!-- Schedule -->
+    <div id="schedule"></div>
 
-  <button onclick="showAlert()">Stay Connected</button>
+    <!-- Bottom Button -->
+    <a id="bottomBtn" class="btn live"></a>
+
+    <!-- Stay Connected -->
+    <button onclick="showAlert()" class="btn live">Stay Connected</button>
 </div>
 
-<!-- ALERT -->
+<!-- ALERT MODAL -->
 <div id="alert-backdrop"></div>
 <div id="alert-modal">
-  <div id="alert-box">
-    <h3>Stay Connected</h3>
-    <input id="n" placeholder="Name">
-    <input id="e" placeholder="Email">
-    <input id="p" placeholder="Phone">
-    <button onclick="send()">Submit</button>
-  </div>
+    <div id="alert-box">
+        <h3>Stay Connected</h3>
+        <input id="n" placeholder="Name">
+        <input id="e" placeholder="Email">
+        <input id="p" placeholder="Phone">
+        <button onclick="send()">Submit</button>
+    </div>
 </div>
 
 <script>
-async function loadData(){
-  const r=await fetch("https://ixcreampie.github.io/iXcreamPie_Data_Public/public-data.html");
-  const h=await r.text();
-  const f=document.createElement("iframe");
-  f.style.display="none";document.body.appendChild(f);
-  f.contentDocument.write(h);
-  const d=f.contentWindow.PUBLIC_DATA;
+// Load public data
+async function loadData() {
+    const r = await fetch("https://ixcreampie.github.io/iXcreamPie_Data_Public/public-data.html");
+    const h = await r.text();
+    const f = document.createElement("iframe");
+    f.style.display = "none";
+    document.body.appendChild(f);
+    f.contentDocument.write(h);
+    const d = f.contentWindow.PUBLIC_DATA;
 
-  photo.src=d.profile.photo;
-  name.textContent=d.profile.name;
-  topBtn.textContent=d.profile.topButton.label;
-  topBtn.href=d.profile.topButton.link;
-  bottomBtn.textContent=d.profile.bottomButton.label;
-  bottomBtn.href=d.profile.bottomButton.link;
+    photo.src = d.profile.photo;
+    name.textContent = d.profile.name;
+    topBtn.textContent = d.profile.topButton.label;
+    topBtn.href = d.profile.topButton.link;
+    bottomBtn.textContent = d.profile.bottomButton.label;
+    bottomBtn.href = d.profile.bottomButton.link;
 
-  d.schedule.forEach(s=>{
-    const a=document.createElement("a");
-    a.className="btn";
-    a.href=s.link;
-    a.textContent=s.label;
-    schedule.appendChild(a);
-  });
+    d.schedule.forEach(s => {
+        const a = document.createElement("a");
+        a.className = "btn";
+        a.href = s.link;
+        a.textContent = s.label;
+        schedule.appendChild(a);
+    });
 }
 loadData();
 
-bookmarkBtn.onclick=()=>bookmarkBtn.classList.toggle("active");
+// Bookmark toggle
+bookmarkBtn.onclick = () => bookmarkBtn.classList.toggle("active");
 
-function showAlert(){
-  alertBackdrop.style.display="block";
-  alertModal.style.display="flex";
+// Alert modal
+function showAlert() {
+    alertBackdrop.style.display = "block";
+    alertModal.style.display = "flex";
 }
-
-function send(){
-  const body=`Name:${n.value}\nEmail:${e.value}\nPhone:${p.value}`;
-  location.href=`mailto:ixcr3ampie@gmail.com?subject=New Contact&body=${encodeURIComponent(body)}`;
-  alertBackdrop.style.display="none";
-  alertModal.style.display="none";
+function send() {
+    const body = `Name:${n.value}\nEmail:${e.value}\nPhone:${p.value}`;
+    location.href = `mailto:ixcr3ampie@gmail.com?subject=New Contact&body=${encodeURIComponent(body)}`;
+    alertBackdrop.style.display = "none";
+    alertModal.style.display = "none";
 }
 </script>
-
 </body>
 </html>
