@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IX_Cr3@mP!e</title>
+
+<style>
+/* ---- YOUR CSS (cleaned, not redesigned) ---- */
+body{margin:0;background:#fff;font-family:Arial;text-align:center;overflow-x:hidden}
+.parent-element::before{
+content:"";position:fixed;inset:0;
+background:url("https://1pagequicksites.github.io/background1/compressed_1763448547149 (1).webp")
+center/cover no-repeat;opacity:.08;z-index:-1}
+.background{
+background:rgba(229,223,0,.45);padding:15px;margin:10px auto;
+border-radius:20px;border:3px solid #000;min-height:350px}
+.photo{width:95%;height:200px;margin:5px auto;display:block;border:3px solid #000;border-radius:12px;background:#fff}
+.btn{display:block;margin:8px auto;padding:14px;background:#000;color:#fff;
+text-decoration:none;border-radius:8px;font-size:18px;border:3px solid #000}
+.name-title{color:hsl(195,100%,60%);font-size:35px;-webkit-text-stroke:1px black}
+#bookmarkBtn{font-size:32px;cursor:pointer;color:#bbb}
+#bookmarkBtn.active{color:gold}
+
+/* ALERT */
+#alert-backdrop{position:fixed;inset:0;background:rgba(255,255,255,.25);display:none}
+#alert-modal{position:fixed;inset:0;background:rgba(255,255,255,.75);
+backdrop-filter:blur(30px);display:none;align-items:center;justify-content:center}
+#alert-box{background:#fff;padding:20px;width:320px;border-radius:8px}
+#alert-box input{width:100%;margin-bottom:8px;padding:6px}
+</style>
+</head>
+
+<body class="parent-element">
+
+<div class="background">
+  <img id="photo" class="photo">
+  <div class="name-row">
+    <div id="bookmarkBtn">★</div>
+    <h3 id="name" class="name-title"></h3>
+  </div>
+
+  <a id="topBtn" class="btn"></a>
+
+  <div id="schedule"></div>
+
+  <a id="bottomBtn" class="btn live"></a>
+
+  <button onclick="showAlert()">Stay Connected</button>
+</div>
+
+<!-- ALERT -->
+<div id="alert-backdrop"></div>
+<div id="alert-modal">
+  <div id="alert-box">
+    <h3>Stay Connected</h3>
+    <input id="n" placeholder="Name">
+    <input id="e" placeholder="Email">
+    <input id="p" placeholder="Phone">
+    <button onclick="send()">Submit</button>
+  </div>
+</div>
+
+<script>
+async function loadData(){
+  const r=await fetch("https://ixcreampie.github.io/iXcreamPie_Data_Public/public-data.html");
+  const h=await r.text();
+  const f=document.createElement("iframe");
+  f.style.display="none";document.body.appendChild(f);
+  f.contentDocument.write(h);
+  const d=f.contentWindow.PUBLIC_DATA;
+
+  photo.src=d.profile.photo;
+  name.textContent=d.profile.name;
+  topBtn.textContent=d.profile.topButton.label;
+  topBtn.href=d.profile.topButton.link;
+  bottomBtn.textContent=d.profile.bottomButton.label;
+  bottomBtn.href=d.profile.bottomButton.link;
+
+  d.schedule.forEach(s=>{
+    const a=document.createElement("a");
+    a.className="btn";
+    a.href=s.link;
+    a.textContent=s.label;
+    schedule.appendChild(a);
+  });
+}
+loadData();
+
+bookmarkBtn.onclick=()=>bookmarkBtn.classList.toggle("active");
+
+function showAlert(){
+  alertBackdrop.style.display="block";
+  alertModal.style.display="flex";
+}
+
+function send(){
+  const body=`Name:${n.value}\nEmail:${e.value}\nPhone:${p.value}`;
+  location.href=`mailto:ixcr3ampie@gmail.com?subject=New Contact&body=${encodeURIComponent(body)}`;
+  alertBackdrop.style.display="none";
+  alertModal.style.display="none";
+}
+</script>
+
+</body>
+</html>
